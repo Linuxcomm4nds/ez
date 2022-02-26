@@ -5,9 +5,9 @@ List of all commands:
 
 webserver_______Used for a local webserver
 
-  |-start_______Start a local webserver
+|-start_______Start a local webserver
   
-  |_stop________Stop the local webserver
+|_stop________Stop the local webserver
 
 connect         If you are using HTB (https://www.hackthebox.com/)
   |-academy     Connect to the HTB academy VPN (https://academy.hackthebox.com/)
