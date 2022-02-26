@@ -1,0 +1,98 @@
+#!/bin/bash
+
+ip=`hostname -I`
+
+if [ "$1" = "ip" ]; then
+    echo "Your Ip is  $(hostname -I)"
+elif [ "$1" = "-h" ]; then 
+	echo 'webserver 	Used for a local webserver';
+	echo '  |-start	Start a local webserver';
+	echo '  |_stop 	Stop the local webserver';
+	echo '';
+	echo 'connect		If you are using HTB (https://www.hackthebox.com/)';
+	echo '  |-academy	Connect to the HTB academy VPN (https://academy.hackthebox.com/)';
+	echo '  |-lab		Connect to the HTB lab VPN (https://www.hackthebox.com/)';
+	echo '  |_start	Connect to the HTB starting Point (https://www.hackthebox.com/)';
+	echo '';
+	echo 'netscan 	Will scan the network for devices';
+	echo '';
+	echo 'device';
+	echo '  |- -h		help about the device command';
+	echo '  |-scan	Will scan a device for open Ports';
+	echo 'script';
+	echo '  |-scan	Will scan a device for open Ports and more';
+	echo '';
+	echo 'anon		Will start anonsurf';
+	echo '  |-start	Will start anonsurf';
+	echo '  |-status 	Will give you the anonsurf status';
+	echo '  |_stop	Will stop anonsurf';
+	echo '';
+	echo 'ip		Will give your current ip';
+	echo 'edit		Will edit the ez command with nano';
+
+elif [ "$1" = "edit" ]; then
+	sudo nano /usr/local/bin/ez
+elif [ "$1" = "anon" ]; then
+	if [ "$2" = "start" ]; then
+		echo 'Anonsurf is starting but remember it is safe but not magic'
+		sudo anonsurf start
+	elif [ "$2" = "stop" ]; then 
+		echo 'You have now left the safe connection. Pay attention what you are doing'
+		sudo anonsurf stop
+	elif [ "$2" = "status" ]; then 
+		echo "The Status is:"
+		sudo anonsurf status
+	else 
+		echo 'Starting Anonsurf'
+		sudo anonsurf start
+	fi 
+elif [ "$1" = "netscan" ]; then
+	echo 'Searching for all devices in this network...'
+	shortip=`echo $ip | cut -d"." -f1-3`
+    echo "$(nmap -sn $shortip.0/24)"
+elif [ "$1" = "device" ]; then 
+	if [ "$2" = "scan" ]; then 
+		sudo nmap -sV $3
+        elif [ "$2" = "-h" ]; then 
+                 echo 'ez device scan for normal port scan'
+		echo 'ez device script scan for a script port scan '
+        elif [ "$2" = "script" ]; then
+		if [ "$3" = "scan" ]; then 
+			sudo nmap -sV -sC $4
+		else 
+			echo 'Dont forget to add scan '
+		fi
+	else 
+		echo 'This argument is not valid, type "ez device -h" for a list of all device commands'
+	fi
+
+elif [ "$1" = "connect" ]; then 
+	if [ "$2" = "academy" ]; then 
+		echo 'The Path is not configured type ez edit and edit it '
+		#sudo openvpn /PATH/TO/YOUR/academy.ovpn
+	elif [ "$2" = "lab" ]; then 
+		echo 'The Path is not configured type ez edit and edit it '
+		#sudo openvpn /PATH/TO/YOUR/lab.ovpn
+	elif [ "$2" = "start" ];then 
+		echo 'The Path is not configured type ez edit and edit it '
+		#sudo openvpn /PATH/TO/YOURstarting_point.ovpn
+	else
+		echo 'Choose between academy,lab or start'
+	fi
+
+elif [ "$1" = "webserver" ]; then 
+        if [ "$2" = "start" ]; then 
+		shortip=`echo $ip | cut -d"." -f1-3`
+		echo 'Starting Webserver.....'
+		echo "listening on $(hostname -I)"
+		sudo service apache2 start
+        elif [ "$2" = "stop" ]; then 
+		echo 'Stopping webserver...'
+		sudo service apache2 stop
+        else
+                echo 'Choose between start or stop'
+        fi
+
+else
+    echo 'this argument is not valid ,type "ez -h" for a list of all commands'
+fi
