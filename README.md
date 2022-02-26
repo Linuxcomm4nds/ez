@@ -3,6 +3,7 @@ This repo is here to make some linux commands easier
 List of all commands:
 
 webserver       Used for a local webserver
+
   |-start       Start a local webserver
   |_stop        Stop the local webserver
 
