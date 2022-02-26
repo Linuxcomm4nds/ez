@@ -9,8 +9,11 @@ webserver       Used for a local webserver
   |_stop        Stop the local webserver
 
 connect         If you are using HTB (https://www.hackthebox.com/)
+
   |-academy     Connect to the HTB academy VPN (https://academy.hackthebox.com/)
+  
   |-lab         Connect to the HTB lab VPN (https://www.hackthebox.com/)
+  
   |_start       Connect to the HTB starting Point (https://www.hackthebox.com/)
 
 netscan         Will scan the network for devices
