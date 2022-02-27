@@ -1,3 +1,9 @@
+How to install ????
+
+----->(https://github.com/Linuxcomm4nds/ez-installer)
+
+
+
 Here is a list of all ez commands:
 ```
 webserver       Used for a local webserver
