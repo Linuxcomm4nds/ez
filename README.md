@@ -24,4 +24,5 @@ anon            Will start anonsurf
 
 ip              Will give your current ip
 edit            Will edit the ez command with nano
+-h              Will give you this list of commands
 ```
