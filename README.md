@@ -1,4 +1,4 @@
-Some basic Git commands are:
+Here is a list of all ez commands:
 ```
 webserver       Used for a local webserver
   |-start       Start a local webserver
@@ -14,8 +14,8 @@ netscan         Will scan the network for devices
 device
   |- -h         help about the device command
   |-scan        Will scan a device for open Ports
-script
-  |-scan        Will scan a device for open Ports and more
+  |-script
+    |-scan      Will scan a device for open Ports and more
 
 anon            Will start anonsurf
   |-start       Will start anonsurf
